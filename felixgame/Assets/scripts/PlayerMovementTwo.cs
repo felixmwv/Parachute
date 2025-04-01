@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerMovementTwo : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 10f;
+    public float moveSpeed = 11f;
 
     private Rigidbody body;
     void Start()
@@ -18,7 +18,7 @@ public class PlayerMovementTwo : MonoBehaviour
     void FixedUpdate()
     {
         //Stores user input as a movement vector
-        Vector3 m_Input = new Vector3(Input.GetAxis("Horizontal"),0,0);
+        Vector3 m_Input = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
 
 
         //Applies the movement vector to the current position, which is 
