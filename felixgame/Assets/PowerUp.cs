@@ -14,7 +14,7 @@ public class PowerUp : MonoBehaviour
         {
             StartCoroutine(Pickup(other));
         }
-        if (other.CompareTag("floor"))
+        else if (other.CompareTag("floor"))
         {
             Destroy(gameObject);
         }
@@ -24,15 +24,15 @@ public class PowerUp : MonoBehaviour
     {
         Instantiate(pickupEffect, transform.position, transform.rotation);
 
-        PlayerMovementTwo stats = player.GetComponent<PlayerMovementTwo>();
-        stats.moveSpeed *= multiplier;
+        ISpeedBoost speedboostScript = player.GetComponent<ISpeedBoost>();
+        speedboostScript.GainSpeed(multiplier);
 
-        GetComponent<MeshRenderer>().enabled = false;
+        GetComponentInChildren<MeshRenderer>().enabled = false;
         GetComponent<Collider>().enabled = false;
 
         yield return new WaitForSeconds(duration);
 
-        stats.moveSpeed /= multiplier;
+        speedboostScript.LoseSpeed(multiplier);
 
         Destroy(gameObject);
     }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerMovementTwo : MonoBehaviour
+public class PlayerMovementTwo : MonoBehaviour, ISpeedBoost
 {
     public float moveSpeed = 11f;
 
@@ -25,4 +25,20 @@ public class PlayerMovementTwo : MonoBehaviour
         //multiplied by deltaTime and speed for a smooth MovePosition
         body.MovePosition(transform.position + m_Input * Time.fixedDeltaTime * moveSpeed);
     }
+
+    public void GainSpeed(float speed)
+    {
+        moveSpeed *= speed;
+    }
+
+    public void LoseSpeed(float speed)
+    {
+        moveSpeed /= speed;
+    }
+}
+
+public interface ISpeedBoost
+{
+    void GainSpeed(float speed);
+    void LoseSpeed(float speed);
 }
