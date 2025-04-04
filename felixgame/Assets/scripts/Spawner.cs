@@ -2,37 +2,41 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public GameObject mySphere; //dit is de item prefab
+    //The GameObject that will spawn
+    public GameObject ItemToSpawn; 
+    //Time between item spawns
+    public float spawnInterval = 0.9f; 
+    //Ranges for item spawn location
+    public int rangeX = 7; 
+    public int minY = 11; 
+    public int maxY = 11; 
 
-    public float spawnInterval = 0.9f; //dit is de tijd tussen spawns
-
-    public int rangeX = 7; //dit is de breedte waarin de items spawnen
-    public int minY = 11; //minimale hoogte voor spawns
-    public int maxY = 11; //maximale hoogte voor spawns
-
-    private float timer; //dit maakt een timer variabele aan
+    //creates a timer
+    private float timer; 
     void Start()
     {
-        timer = spawnInterval; //de timer wordt gelijk gezet aan het interval
+        timer = spawnInterval; 
     }
 
     void Update()
     {
-        timer -= Time.deltaTime; //dit zorgt ervoor dat de timer gaat aftellen 
+        //makes the timer count down and if the timer reaches 0 it will spawn chosen GameObject
+        timer -= Time.deltaTime;
         
         if(timer <=0) 
         {
-            SpawnSphere(); //als de timer kleiner of gelijk is aan 0 dan spawnt er een clone
-            timer = spawnInterval; //dit zet de timer weer terug naar het interval
+            SpawnSphere(); 
+            timer = spawnInterval; 
         }
     }
     public void SpawnSphere() 
     {
-        int spawnPointX = Random.Range(-rangeX, rangeX); //dit kiest een random plek tussen de gegeven posities
-        int spawnPointY = Random.Range(minY, maxY); //dit kiest een random plek tussen de gegeven posities
+        //chooses a random point in given range and Instantiates a clone of chosen GameObject
+        int spawnPointX = Random.Range(-rangeX, rangeX); 
+        int spawnPointY = Random.Range(minY, maxY); 
 
-        Vector3 spawnPosition = new Vector3(spawnPointX, spawnPointY); //dit geeft aan wat de spawnpositie is
+        Vector3 spawnPosition = new Vector3(spawnPointX, spawnPointY); 
 
-        Instantiate(mySphere, spawnPosition, Quaternion.identity); //dit maakt een clone aan op de gekozen positie
+        Instantiate(ItemToSpawn, spawnPosition, Quaternion.identity); 
     }
 }

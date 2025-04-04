@@ -6,26 +6,23 @@ using UnityEngine.SceneManagement;
 
 public class KeepScore : MonoBehaviour
 {
-
-    public float Score = 0f;   //variabele voor de score
-    public int winScore = 64;  //variabele voor de winscore
-    TMPro.TMP_Text text; //dit maakt een TextMeshPro text aan
-
-
-
+    public float Score = 0f;
+    public int winScore = 64;
+    TMPro.TMP_Text text;
 
     void Awake()
     {
         text = GetComponent<TMPro.TMP_Text>(); 
     }
 
-
     void Update()
     {
+        //Switches to win screen if winScore is reached
         if (Score >= winScore) 
         {
-            SceneManager.LoadScene(3); //als de score hoger of gelijk is aan de winscore dan wisselt de scene naar het winscherm
+            SceneManager.LoadScene(3); 
         }
-        text.text = $"Score: {Score}"; //dit zorgt ervoor dat de score variabele in het ingame ui te zien is
+        //shows the score on screen
+        text.text = $"Score: {Score}"; 
     }
 }

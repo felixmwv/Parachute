@@ -6,11 +6,13 @@ public class GameOver : MonoBehaviour
 {
     public void PlayAgain()
     {
-        SceneManager.LoadScene(1); //dit laadt het level als op de knop wordt geklikt
+        //Scene switches to the game
+        SceneManager.LoadScene(1); 
     }
 
     public void RestartGame()
     {
-        SceneManager.LoadScene(0); //dit laadt het main menu als op de knop wordt geklikt
+        //Scene switches to main menu
+        SceneManager.LoadScene(0); 
     }
 }

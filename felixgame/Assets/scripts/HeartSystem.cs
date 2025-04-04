@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 public class HeartSystem : MonoBehaviour
 {
-    public List<GameObject> hearts = new List<GameObject>();    //dit zijn de harten in het ui
-    public int life;               //variabele voor levens
+    public List<GameObject> hearts = new List<GameObject>();    
+    public int life;               
     [SerializeField] private GameObject heartPrefab;
     [SerializeField] private Transform heartHolder;
 
@@ -19,11 +19,13 @@ public class HeartSystem : MonoBehaviour
     }
     public void TakeDamage(int d)
     {
-        life -= d;   //d is hoeveel damage er gedaan wordt
+        //d is damage taken, if life reaches 0 scene will switch to game over screen
+        life -= d;   
         if(life <= 0)
         {
-            SceneManager.LoadScene(2); //als de levens op zijn, wisselt het spel naar het game over scherm
+            SceneManager.LoadScene(2); 
         }
+        //Shows and hides how many hearts are left
         for (int i = 0; i < hearts.Count; i++)
         {
             if (i < life)
@@ -36,4 +38,16 @@ public class HeartSystem : MonoBehaviour
             }
         }
     }
+
+    public void GainHealth(int h)
+    {
+        //Adds an extra heart
+        life += h;
+
+        for (int i = hearts.Count; i < life; i++)
+        {
+            GameObject heart = Instantiate (heartPrefab, heartHolder);  hearts.Add(heart);
+        }
+    }
+    
 }

@@ -10,6 +10,7 @@ public class PowerUp : MonoBehaviour
     public GameObject pickupEffect;
     private void OnTriggerEnter(Collider other)
     {
+        //Checks if the player or floor is collided with and executes function
         if (other.CompareTag("Player"))
         {
             StartCoroutine(Pickup(other));
@@ -18,12 +19,9 @@ public class PowerUp : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
     }
     IEnumerator Pickup(Collider player)
     {
-        Instantiate(pickupEffect, transform.position, transform.rotation);
-
         ISpeedBoost speedboostScript = player.GetComponent<ISpeedBoost>();
         speedboostScript.GainSpeed(multiplier);
 
